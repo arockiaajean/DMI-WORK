@@ -1,0 +1,20 @@
+import os
+
+folder_path = r"F:\2025\New folder"
+
+for filename in os.listdir(folder_path):
+    if filename.lower().endswith(".txt"):
+        file_path = os.path.join(folder_path, filename)
+
+        # Read file with safe encoding handling
+        with open(file_path, "r", encoding="latin-1") as file:
+            lines = file.readlines()
+
+        updated_lines = [f"{filename}, {line.strip()}\n" for line in lines if line.strip()]
+
+        # Write back as UTF-8
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.writelines(updated_lines)
+
+print("✅ Done! Filename added to every row.")
+
